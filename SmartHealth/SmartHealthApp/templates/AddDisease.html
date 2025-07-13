@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<title>Smart Health Consulting Online System</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+<script language="javascript">
+function checkEmail(t3) {
+	if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(t3)){
+		return (true)
+	}
+	alert("Invalid E-mail Address! Please re-enter.")
+	return (false);
+}
+function validate(formObj){
+	if(formObj.t1.value.length==0){
+		alert("Please Enter Disease name");
+		formObj.t1.focus();
+		return false;
+	}
+	if(formObj.t2.value.length==0){
+		alert("Please Enter Symptoms details");
+		formObj.t2.focus();
+		return false;
+	}
+	if(formObj.t3.value.length==0){
+		alert("Please Enter Medicines Details");
+		formObj.t3.focus();
+		return false;
+	}
+	if(formObj.t4.value.length==0){
+		alert("Please Enter Consult Doctor Details");
+		formObj.t4.focus();
+		return false;
+	}
+	return true;
+}
+</script>
+	
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<center><font size="4" color="yellow">Smart Health Consulting Online System</font></center>
+		</div>
+		<div id="slogan">
+			
+		</div>
+	</div>
+	<div id="menu">
+		<ul><center>
+			<li class="first current_page_item"><a href="{% url 'AddDoctor' %}"><font size="" color="yellow">Add Doctor/Hospital Details </font></a></li>
+			<li><a href="{% url 'ViewHospitalDetails' %}"><font size="" color="yellow">View Hospital Details</font></a></li>
+			<li><a href="{% url 'AddDisease' %}"><font size="" color="yellow">Add Disease Details</font></a></li>
+			<li><a href="{% url 'index' %}"><font size="" color="yellow">Logout</font></a></li>
+			
+		</center></ul><br class="clearfix" />
+				</div>
+			
+	<div id="splash">
+		<img class="pic" src="{% static 'images/investor.jpg' %}" width="870" height="230" alt="" />
+	</div>	
+			<center>
+<form name="f1" method="post" action={% url 'AddDiseaseAction' %} onsubmit="return validate(this);">
+<br/>{% csrf_token %}<br/>
+   <h2><b>Add Disease, Symptoms & Medicines details Screen</b></h2>
+   
+				 <font size="" color="red"><center>{{ data|safe }}</center></font>
+						<table align="center" width="40" >
+			 <tr><td><font size="" color="black">Disease</b></td><td><input type="text" name="t1" style="font-family: Comic Sans MS" size="50"/></td></tr>
+         
+		  
+		<tr><td><font size="" color="black">Symptoms</b></td><td><input type="text" name="t2" style="font-family: Comic Sans MS" size="50"/></td></tr>
+
+		<tr><td><font size="" color="black">Medicines</b></td><td><input type="text" name="t3" style="font-family: Comic Sans MS" size="50"/></td></tr>
+
+		<tr><td><font size="" color="black">Consult&nbsp;Doctors</b></td><td><input type="text" name="t4" style="font-family: Comic Sans MS" size="50"/></td></tr>
+         
+			<tr><td></td><td><input type="submit" value="Submit">
+			</td>
+			</table>
+				</div>	
+					
+				</div>
+				<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	</body>
+</html>
